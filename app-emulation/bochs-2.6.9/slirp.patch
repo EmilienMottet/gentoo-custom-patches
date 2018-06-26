@@ -1,0 +1,11 @@
+--- a/iodev/network/slirp/slirp.h
++++ b/iodev/network/slirp/slirp.h
+@@ -33,7 +33,7 @@
+ #endif
+ 
+ #include <sys/types.h>
+-#if defined(__OpenBSD__)
++#if defined(__OpenBSD__) || (__linux__)
+ #include <stdint.h>
+ #include <sys/wait.h>
+ #endif

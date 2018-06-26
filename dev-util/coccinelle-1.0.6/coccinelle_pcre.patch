@@ -1,0 +1,24 @@
+--- a/globals/Makefile	2016-09-27 16:47:06.000000000 -0400
++++ b/globals/Makefile	2018-03-14 12:02:02.337900361 -0400
+@@ -18,16 +18,18 @@ OPTFLAGS ?= -g
+ SRC=config.ml flag.ml iteration.ml $(REGEXP_FILE) regexp.ml
+ 
+ LIBS=
+-INCLUDEDIRS= ../commons $(PCREDIR)
++INCLUDEDIRS_LOCAL= ../commons
++INCLUDEDIRS= $(INCLUDEDIRS_LOCAL) $(PCREDIR)
+ 
+ ##############################################################################
+ # Generic variables
+ ##############################################################################
+ 
+ INCLUDES=$(INCLUDEDIRS:%=-I %)
++INCLUDES_DEPEND=$(INCLUDEDIRS_LOCAL:%=-I %)
+ OCAMLC_CMD=$(OCAMLC) $(OCAMLCFLAGS) $(INCLUDES)
+ OCAMLOPT_CMD=$(OCAMLOPT) $(OPTFLAGS) $(INCLUDES)
+-OCAMLDEP_CMD=$(OCAMLDEP) $(INCLUDES)
++OCAMLDEP_CMD=$(OCAMLDEP) $(INCLUDES_DEPEND)
+ OCAMLMKTOP_CMD=$(OCAMLMKTOP) -g -custom $(INCLUDES)
+ 
+ OBJS= $(SRC:.ml=.cmo)
+
